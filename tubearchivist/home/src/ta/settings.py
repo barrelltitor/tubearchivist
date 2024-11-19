@@ -43,7 +43,9 @@ class EnvironmentSettings:
         )
     )
     ES_DISABLE_VERIFY_SSL: bool = bool(environ.get("ES_DISABLE_VERIFY_SSL"))
-
+    # Proxy
+    HTTP_PROXY: str = environ.get("HTTP_PROXY")
+    
     def print_generic(self):
         """print generic env vars"""
         print(

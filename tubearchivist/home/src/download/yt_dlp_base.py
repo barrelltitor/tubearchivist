@@ -24,6 +24,7 @@ class YtWrap:
         "socket_timeout": 10,
         "extractor_retries": 3,
         "retries": 10,
+        "proxy": EnvironmentSettings.HTTP_PROXY if EnvironmentSettings.HTTP_PROXY else None,
     }
 
     def __init__(self, obs_request, config=False):
