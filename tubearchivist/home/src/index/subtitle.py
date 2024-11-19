@@ -11,7 +11,7 @@ from datetime import datetime
 
 import requests
 from home.src.es.connect import ElasticWrap
-from home.src.ta.helper import requests_headers
+from home.src.ta.helper import requests_headers, get_proxies
 from home.src.ta.settings import EnvironmentSettings
 
 
@@ -121,7 +121,7 @@ class YoutubeSubtitle:
             source = subtitle["source"]
             lang = subtitle.get("lang")
             response = requests.get(
-                subtitle["url"], headers=requests_headers(), timeout=30
+                subtitle["url"], headers=requests_headers(), timeout=30, proxies= get_proxies()
             )
             if not response.ok:
                 print(f"{self.video.youtube_id}: failed to download subtitle")

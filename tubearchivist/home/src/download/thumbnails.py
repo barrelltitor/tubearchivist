@@ -11,7 +11,7 @@ from time import sleep
 
 import requests
 from home.src.es.connect import ElasticWrap, IndexPaginate
-from home.src.ta.helper import is_missing
+from home.src.ta.helper import is_missing, get_proxies
 from home.src.ta.settings import EnvironmentSettings
 from mutagen.mp4 import MP4, MP4Cover
 from PIL import Image, ImageFile, ImageFilter, UnidentifiedImageError
@@ -39,7 +39,7 @@ class ThumbManagerBase:
 
         for i in range(3):
             try:
-                response = requests.get(url, stream=True, timeout=5)
+                response = requests.get(url, stream=True, timeout=5, proxies= get_proxies())
                 if response.ok:
                     try:
                         img = Image.open(response.raw)

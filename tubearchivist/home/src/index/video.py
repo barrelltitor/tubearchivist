@@ -17,7 +17,7 @@ from home.src.index.generic import YouTubeItem
 from home.src.index.subtitle import YoutubeSubtitle
 from home.src.index.video_constants import VideoTypeEnum
 from home.src.index.video_streams import MediaStreamExtractor
-from home.src.ta.helper import get_duration_sec, get_duration_str, randomizor
+from home.src.ta.helper import get_duration_sec, get_duration_str, randomizor, get_proxies
 from home.src.ta.settings import EnvironmentSettings
 from home.src.ta.users import UserConfig
 from ryd_client import ryd_client
@@ -52,7 +52,7 @@ class SponsorBlock:
         headers = {"User-Agent": self.user_agent}
         print(f"{youtube_id}: get sponsorblock timestamps")
         try:
-            response = requests.get(url, headers=headers, timeout=10)
+            response = requests.get(url, headers=headers, timeout=10, proxies= get_proxies()) # Not sure if proxy is necessary on sponsorblock?
         except requests.ReadTimeout:
             print(f"{youtube_id}: sponsorblock API timeout")
             return False
