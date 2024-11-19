@@ -23,6 +23,7 @@ from home.src.ta.config import AppConfig
 from home.src.ta.helper import get_channel_overwrites, ignore_filelist
 from home.src.ta.settings import EnvironmentSettings
 from home.src.ta.ta_redis import RedisQueue
+from tubearchivist.config.settings import HTTP_PROXY
 
 
 class DownloaderBase:
@@ -157,6 +158,8 @@ class VideoDownloader(DownloaderBase):
             "noplaylist": True,
             "color": "no_color",
         }
+        if HTTP_PROXY:
+            self.obs["proxy"] = HTTP_PROXY
 
     def _build_obs_user(self):
         """build user customized options"""
